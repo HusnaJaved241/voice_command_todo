@@ -1,24 +1,57 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# voice_command_todo
+# 🎙️ Voice Command To-Do App
 
-A new Flutter project.
+A simple yet powerful Flutter to-do list application that supports voice command inputs, shared preferences for local data persistence, and elegant animations — built entirely without Firebase or backend services.
 
-## Getting Started
+## 🌟 Features
 
-This project is a starting point for a Flutter application.
+- 🎤 **Voice Command Input**  
+  Use your voice to add tasks to your to-do list! Just say your task followed by the word `"stop"` and it will be added automatically.
 
-A few resources to get you started if this is your first Flutter project:
+- 📝 **Text Input Dialog**  
+  Easily add tasks manually via a clean and intuitive dialog with `Add` and `Clear` options.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- ✅ **Task Management**  
+  - Mark tasks as complete or incomplete.
+  - Delete tasks with a single tap.
+  - Task state persists even after restarting the app.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# voice_command_todo
->>>>>>> 858964a156d3a9fdfe3897cd3061c104937a6040
-=======
-# voice_command_todo
->>>>>>> 6fd8bd9ad30a0eaf2280634c3bfb9f4f77b97d94
+- 💾 **Persistent Storage using SharedPreferences**  
+  All tasks are saved locally using `SharedPreferences` in JSON format, ensuring your tasks are always available.
+
+- 🔄 **State Management**  
+  Maintains state in a clean and readable `StatefulWidget` structure with dynamic task updates.
+
+- 🔊 **Microphone Permission Handling**  
+  Uses `permission_handler` to manage microphone access securely.
+
+- 🔁 **Smooth Animations**  
+  Microphone button pulses with `ScaleTransition` when actively listening.
+
+## 🚀 Technologies Used
+
+| Tech                    | Purpose                                  |
+|-------------------------|------------------------------------------|
+| Flutter                 | Core framework                           |
+| speech_to_text          | Speech recognition                       |
+| shared_preferences      | Local storage                            |
+| permission_handler      | Microphone permissions                   |
+| AnimationController     | Custom pulsing animation                 |
+| JSON (encode/decode)    | Task serialization/deserialization       |
+
+## 📸 Screenshots
+
+> _Add screenshots here if available for better presentation_
+
+
+## 🧠 What I Learned
+- How to serialize and deserialize data using JSON in Flutter.
+
+- Using SharedPreferences to save complex model lists persistently.
+
+- Managing user permissions using permission_handler.
+
+- Implementing smooth UI animations using AnimationController and Tween.
+
+- Real-time speech-to-text integration with control over voice input flow.
+
+- Handling edge cases like empty inputs, multiple state toggles, and cleanup.
