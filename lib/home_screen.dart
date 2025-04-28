@@ -17,10 +17,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   final TextEditingController _taskController = TextEditingController();
   final List<TodoModel> _todos = [];
   final SpeechToText _speech = SpeechToText();
+
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
 
   bool _isListening = false;
+  bool _taskAddedFromVoice = false;
   String _voiceInput = '';
 
   @override
@@ -109,23 +111,31 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       bool available = await _speech.initialize();
       if (!available) return;
 
-      setState(() => _isListening = true);
+      setState(() {
+        _isListening = true;
+        _taskAddedFromVoice = false; // Reset lock
+      });
       _animationController.repeat();
 
       _speech.listen(
         onResult: (result) {
           setState(() => _voiceInput = result.recognizedWords);
 
-          if (_voiceInput.toLowerCase().trim().endsWith("stop")) {
+          if (_voiceInput.toLowerCase().trim().endsWith("stop") && !_taskAddedFromVoice) {
             _speech.stop();
             _animationController.stop();
             setState(() => _isListening = false);
 
-            final cleanText =
-                _voiceInput.replaceAll(RegExp(r'\bstop\b\$'), '').trim();
+            final cleanText = _voiceInput.replaceAll(RegExp(r'\bstop\b', caseSensitive: false), '').trim();
 
-            _addTask(cleanText);
-            setState(() => _voiceInput = '');
+            if (cleanText.isNotEmpty) {
+              _addTask(cleanText);
+            }
+
+            setState(() {
+              _voiceInput = '';
+              _taskAddedFromVoice = true; // Prevent double addition
+            });
           }
         },
       );
@@ -134,7 +144,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         if (status == "notListening") {
           _animationController.stop();
           setState(() => _isListening = false);
-          _saveTodosToPrefs();
         }
       };
     } else {
