@@ -38,10 +38,9 @@ A simple yet powerful Flutter to-do list application that supports voice command
 | AnimationController     | Custom pulsing animation                 |
 | JSON (encode/decode)    | Task serialization/deserialization       |
 
-## 📸 Screenshots
+## 📸 Demo
 
-> _Add screenshots here if available for better presentation_
-
+(https://youtube.com/shorts/RO-WbWaBmzg?feature=share)
 
 ## 🧠 What I Learned
 - How to serialize and deserialize data using JSON in Flutter.
